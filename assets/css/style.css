@@ -82,3 +82,123 @@ p#reg{
     border-radius: 4px;
     font-weight: bold;
 }
+/* Información App */
+.informacion-app{
+    background-color: #f7b617; /*amarillo*/
+    
+}
+.informacion-caja{
+    border: 1px solid white;
+    margin: 5vh 0;
+}
+.informacion-app p{
+    font-size: 18px;
+    padding: 10px 0;
+}
+.informacion-app img{
+    width: 70%;
+    margin: 0 auto;
+    padding: 5vh;
+
+}
+.informacion-texto{
+    width: 70%;
+    padding: 10vh 0;
+}
+.informacion h1, .informacion h3{
+    text-align: center;
+    padding: 5vh 0;
+}
+
+@media (max-width: 992px) { 
+    .informacion-caja{
+        margin: 20px;
+    }
+}
+
+
+/* Conduce */
+.conduce{
+    background-image: url(../img/conduce.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 55vh;
+    padding: 0;
+}
+.col-conduce{
+    background-color: rgba(0,0,0, 0.5);
+    padding: 12vh 35px;
+    height: 100%;
+}
+.col-conduce h3{
+    margin: 10px 0;
+}
+.btn-conductor {
+    background-color: #f7b617; /*amarillo*/
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Tarifa */
+.tarifa{
+    background-color: #f7b617; /*amarillo*/
+}
+.tarifa-calcular{
+    padding: 5vh 0;
+    display: flex;
+    justify-content: center;
+}
+.tarifa-posicion{
+    width: 80%;
+}
+.tarifa-calcular h3, .tarifa-calcular p{
+    
+}
+.origen-destino{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+}
+::-webkit-input-placeholder { 
+  color: white;
+}
+.origen-destino input[type=text]{
+    width: 90%;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 4px;
+    margin: 0 20px;
+    padding: 5px;
+}
+.tarifa-calcular button{
+    background-color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 2px;
+    padding: 10px 25px;
+    
+}
+.btn-tarifa{
+    text-align: center;
+}
+.tarifa-calcular img{
+    width: 20px;
+    height: 20px;
+}
+
+#map{ 
+      width: 100%;
+      height: 55vh;
+      border: 1px solid white;
+    }
+.borde{
+    padding: 8px;
+    border: 1px solid white;
+    width: 75%;
+    margin: 30px;
+}
