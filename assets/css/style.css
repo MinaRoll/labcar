@@ -31,3 +31,54 @@ h1, h2, h3, h4, h5, h6, p{
     margin-left: 30px;
     border: none;
 }
+/* Hero */
+.hero{
+    background-image: url(../img/taxi.jpg);
+    background-position: bottom;
+    background-size: cover;
+    height: 100vh;
+
+}
+.col-registro{
+    padding: 0;
+}
+.registrate{
+    background-color: #f7b617; /*amarillo*/
+    margin: 20vh 0;
+    padding: 30px;
+}
+
+.registrate h4{
+    display: inline-block;
+    padding: 5px;
+    margin: 15px 0;
+}
+.registrate h4>img{
+    display: inline-block;
+    width: 126px;
+}
+p#reg{
+    margin-bottom: 20px;
+}
+.div-registro{
+    display: flex;
+    flex-direction: row;
+}
+.div-registro p{
+    margin: 0 30px;
+}
+
+.div-registro input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    width: 30%;
+}
+.registrate button{
+    border: none;
+    padding: 5px 20px;
+    margin: 20px 0 0 0;
+    background-color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
