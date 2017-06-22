@@ -1,3 +1,4 @@
+// Función para agregar mapa
 function initMap() {
 
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -16,6 +17,7 @@ function initMap() {
 
     var latitud, longitud;
 
+// Función para encontrar con éxito la localización
 var funcionExito = function(posicion){
   latitud = posicion.coords.latitude;
   longitud = posicion.coords.longitude;
@@ -29,6 +31,8 @@ var funcionExito = function(posicion){
   map.setZoom(17);
   map.setCenter({lat: latitud, lng: longitud});  
 }
+
+//Función de error (no encuentra la localización)
 var funcionError = function(error){
   alert("tenemos problemas para encontrar ubicación");
 }
@@ -42,7 +46,7 @@ var funcionError = function(error){
 
 }
 
-/* Constructor */
+// Constructor
 function AutocompleteDirectionsHandler(map) {
   this.map = map;
   this.originPlaceId = null;
@@ -122,3 +126,4 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 
   
 };
+
