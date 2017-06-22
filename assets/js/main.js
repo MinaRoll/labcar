@@ -21,7 +21,7 @@ function initMap() {
 var funcionExito = function(posicion){
   latitud = posicion.coords.latitude;
   longitud = posicion.coords.longitude;
-   var image = 'http://www.adktrailmap.com/webmap/images/biking.png';
+   var image = 'http://www.adktrailmap.com/webmap/images/marker-icon.png';
   var miUbicacion = new google.maps.Marker({
     position: {lat: latitud, lng: longitud},
     animacion: google.maps.Animation.DROP,
@@ -44,34 +44,36 @@ var funcionError = function(error){
 
   new AutocompleteDirectionsHandler(map);
 
+  buscar();
+
 }
 
 // Constructor
 function AutocompleteDirectionsHandler(map) {
   this.map = map;
-  this.originPlaceId = null;
-  this.destinationPlaceId = null;
+  this.origenPlaceId = null;
+  this.destinoPlaceId = null;
   this.travelMode = 'CAMINANDO';
-  var originInput = document.getElementById('origen-input');
-  var destinationInput = document.getElementById('destino-input');
-  var modeSelector = document.getElementById('modo-seleccion');
+  var origenInput = document.getElementById('origen-input');
+  var destinoInput = document.getElementById('destino-input');
+  var modoSeleccion = document.getElementById('modo-seleccion');
   this.directionsService = new google.maps.DirectionsService;
   this.directionsDisplay = new google.maps.DirectionsRenderer;
   this.directionsDisplay.setMap(map);
 
-  var originAutocomplete = new google.maps.places.Autocomplete(
-      originInput, {placeIdOnly: true});
-  var destinationAutocomplete = new google.maps.places.Autocomplete(
-      destinationInput, {placeIdOnly: true});
+  var origenAutocomplete = new google.maps.places.Autocomplete(
+      origenInput, {placeIdOnly: true});
+  var destinoAutocomplete = new google.maps.places.Autocomplete(
+      destinoInput, {placeIdOnly: true});
 
-  this.setupClickListener('buscar-caminando', 'CAMINANDO');
-  this.setupClickListener('buscar-transporte', 'TRANSPORTE');
-  this.setupClickListener('buscar-conduciendo', 'CONDUCIENDO');
+  this.setupClickListener('changemode-caminando', 'CAMINANDO');
+  this.setupClickListener('changemode-transporte', 'TRANSPORTE');
+  this.setupClickListener('changemode-conduciendo', 'CONDUCIENDO');
 
-  this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-  this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+  this.setupPlaceChangedListener(origenAutocomplete, 'ORIG');
+  this.setupPlaceChangedListener(destinoAutocomplete, 'DEST');
 
-  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modoSeleccion);
 }
 
 // Autocompletado
@@ -90,13 +92,13 @@ AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(aut
   autocomplete.addListener('place_changed', function() {
     var place = autocomplete.getPlace();
     if (!place.place_id) {
-      window.alert("Please select an option from the dropdown list.");
+      window.alert("Por favor selecciona una opción");
       return;
     }
     if (mode === 'ORIG') {
-      me.originPlaceId = place.place_id;
+      me.origenPlaceId = place.place_id;
     } else {
-      me.destinationPlaceId = place.place_id;
+      me.destinoPlaceId = place.place_id;
     }
     me.route();
   });
@@ -105,14 +107,14 @@ AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(aut
 
 
 AutocompleteDirectionsHandler.prototype.route = function() {
-  if (!this.originPlaceId || !this.destinationPlaceId) {
+  if (!this.origenPlaceId || !this.destinoPlaceId) {
     return;
   }
   var me = this;
      
   this.directionsService.route({
-    origin: {'placeId': this.originPlaceId},
-    destination: {'placeId': this.destinationPlaceId},
+    origen: {'placeId': this.origenPlaceId},
+    destino: {'placeId': this.destinoPlaceId},
     travelMode: this.travelMode
   }, function(response, status) {
     if (status === 'OK') {
@@ -120,7 +122,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
       me.directionsDisplay.setDirections(response);
       });
     } else {
-      window.alert('Directions request failed due to ' + status);
+      window.alert('Se ha producido un error ' + status);
     }
   });
 
